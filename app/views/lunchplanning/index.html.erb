@@ -1,0 +1,39 @@
+<h1>MingLunch</h1>
+<h2>User: <%=h @user.login %></h2>
+<p>
+<%= link_to("Logout", :controller => "account", :action => "logout") %>
+</p>
+<p>
+<strong>Number of Restaurants:</strong>
+<%=h @restaurants.size %> 
+</p>
+<table>
+<tr>
+<th>Restaurant Name </th>
+<th>Vote Number </th>
+</tr>
+
+<% for restaurant in @restaurants %>
+  <tr>
+	<td><%=h restaurant.name %></td>
+        <% currentVotes = [] %>
+	<% restaurant.votes.each do |existingVote| %>
+	<% 	isToday = Vote.isToday(existingVote)%>
+	<%	if(isToday) %>
+	<%		currentVotes << existingVote  %>
+	<%	end	%>
+	<% end	%>
+	<td><%=h currentVotes.size %></td>
+
+	<td>
+	<% vote = Vote.new %>
+	<% form_for(vote, restaurant , :url => restaurant_votes_path(restaurant)) do |f| %>
+    	<%= f.submit "Vote" %>
+	<% end %>
+
+
+	</td>
+
+  </tr>
+<%end%>
+</table>

@@ -1,0 +1,13 @@
+<p>
+  <b>Restaurant:</b>
+  <%=h @vote.restaurant %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @vote.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>

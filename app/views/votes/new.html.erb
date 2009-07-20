@@ -1,0 +1,12 @@
+<h1>New vote</h1>
+<h3>User email: <%= @user.email  %></h3>
+<h3>User_id: <%= @user.id %> </h3>
+<h3>Restaurant: <%= @restaurant.name %></h3>
+
+<% form_for([@restaurant, @vote], @user, :url => restaurant_votes_path(@restaurant)) do |f| %>
+  <p>
+    <%= f.submit "Vote" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', votes_path %>

@@ -1,0 +1,22 @@
+<h1>Listing votes</h1>
+<h3><%=h @current_user.login  %></h3>
+<table>
+  <tr>
+    <th>Restaurant</th>
+    <th>User</th>
+  </tr>
+
+<% for vote in @votes %>
+  <tr>
+    <td><%=h vote.restaurant.name %></td>
+    <td><%=h vote.user.login %></td>
+    <td><%= link_to 'Show', vote %></td>
+    <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
+    <td><%= link_to 'Destroy', vote, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New vote', new_vote_path %>
